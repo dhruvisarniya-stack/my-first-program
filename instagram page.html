@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Feed</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fafafa;
+    color: #262626;
+}
+
+/* Main Layout */
+.container {
+    display: grid;
+    grid-template-columns: 245px 1fr 320px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 30px 20px;
+    border-right: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-family: cursive;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.nav-item:hover {
+    background: #eee;
+}
+
+.nav-item span {
+    font-size: 23px;
+}
+
+/* Main Feed */
+.feed {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 30px 25px;
+}
+
+/* Stories */
+.stories {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 15px 5px 25px;
+    margin-bottom: 20px;
+}
+
+.story {
+    min-width: 68px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.story img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 3px;
+    border: 3px solid #e1306c;
+    margin-bottom: 7px;
+}
+
+/* Post Card */
+.post {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    gap: 10px;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.location {
+    color: #888;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.more {
+    margin-left: auto;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.post-image {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-actions {
+    display: flex;
+    gap: 17px;
+    padding: 13px 14px;
+    font-size: 25px;
+}
+
+.post-actions span {
+    cursor: pointer;
+}
+
+.post-actions .save {
+    margin-left: auto;
+}
+
+.post-content {
+    padding: 0 14px 16px;
+    font-size: 14px;
+}
+
+.likes {
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.caption {
+    margin-bottom: 8px;
+}
+
+.comments {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.add-comment {
+    color: #999;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+/* Right Suggestions */
+.right-panel {
+    padding: 40px 25px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+    font-size: 14px;
+}
+
+.profile-info p {
+    color: #999;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.switch {
+    color: #0095f6;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.suggestion-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.suggestion-heading span {
+    color: #999;
+}
+
+.suggestion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.suggestion img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.suggestion-info {
+    flex: 1;
+    font-size: 13px;
+}
+
+.suggestion-info p {
+    color: #999;
+    margin-top: 4px;
+    font-size: 11px;
+}
+
+.follow {
+    color: #0095f6;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.footer {
+    color: #bbb;
+    font-size: 11px;
+    line-height: 2;
+    margin-top: 35px;
+}
+
+/* Responsive */
+@media(max-width: 1050px) {
+    .container {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .sidebar {
+        padding: 25px 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        justify-content: center;
+    }
+
+    .nav-item strong {
+        display: none;
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+@media(max-width: 600px) {
+    .container {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .feed {
+        padding: 10px 0;
+    }
+
+    .stories {
+        padding-left: 12px;
+    }
+
+    .post {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .post-image {
+        height: 380px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">Instagram</div>
+
+        <div class="nav-item"><span>⌂</span><strong>Home</strong></div>
+        <div class="nav-item"><span>⌕</span><strong>Search</strong></div>
+        <div class="nav-item"><span>♧</span><strong>Explore</strong></div>
+        <div class="nav-item"><span>▣</span><strong>Reels</strong></div>
+        <div class="nav-item"><span>✉</span><strong>Messages</strong></div>
+        <div class="nav-item"><span>♡</span><strong>Notifications</strong></div>
+        <div class="nav-item"><span>⊕</span><strong>Create</strong></div>
+        <div class="nav-item"><span>👤</span><strong>Profile</strong></div>
+    </aside>
+
+    <!-- Feed -->
+    <main class="feed">
+
+        <!-- Stories -->
+        <section class="stories">
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=1">
+                Your story
+            </div>
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=2">
+                alex
+            </div>
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=3">
+                sophia
+            </div>
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=4">
+                david
+            </div>
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=5">
+                emily
+            </div>
+            <div class="story">
+                <img src="https://i.pravatar.cc/100?img=6">
+                james
+            </div>
+        </section>
+
+        <!-- Post 1 -->
+        <article class="post">
+            <div class="post-header">
+                <img src="https://i.pravatar.cc/100?img=12">
+                <div>
+                    <div class="username">travel_diaries</div>
+                    <div class="location">Bali, Indonesia</div>
+                </div>
+                <div class="more">•••</div>
+            </div>
+
+            <img class="post-image"
+            src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=900">
+
+            <div class="post-actions">
+                <span>♡</span>
+                <span>♧</span>
+                <span>➤</span>
+                <span class="save">♧</span>
+            </div>
+
+            <div class="post-content">
+                <div class="likes">12,450 likes</div>
+                <div class="caption">
+                    <b>travel_diaries</b> Paradise is not a place,
+                    it's a feeling! 🌴☀️
+                </div>
+                <div class="comments">View all 245 comments</div>
+                <div class="add-comment">Add a comment...</div>
+            </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="post">
+            <div class="post-header">
+                <img src="https://i.pravatar.cc/100?img=20">
+                <div>
+                    <div class="username">food_lovers</div>
+                    <div class="location">Mumbai, India</div>
+                </div>
+                <div class="more">•••</div>
+            </div>
+
+            <img class="post-image"
+            src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=900">
+
+            <div class="post-actions">
+                <span>♡</span>
+                <span>♧</span>
+                <span>➤</span>
+                <span class="save">♧</span>
+            </div>
+
+            <div class="post-content">
+                <div class="likes">8,320 likes</div>
+                <div class="caption">
+                    <b>food_lovers</b> Good food, good mood! 🍕❤️
+                </div>
+                <div class="comments">View all 120 comments</div>
+                <div class="add-comment">Add a comment...</div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Right Panel -->
+    <aside class="right-panel">
+
+        <div class="profile">
+            <img src="https://i.pravatar.cc/100?img=11">
+            <div class="profile-info">
+                <b>your_username</b>
+                <p>Your Name</p>
+            </div>
+            <div class="switch">Switch</div>
+        </div>
+
+        <div class="suggestion-heading">
+            <b>Suggested for you</b>
+            <span>See All</span>
+        </div>
+
+        <div class="suggestion">
+            <img src="https://i.pravatar.cc/100?img=30">
+            <div class="suggestion-info">
+                <b>john_doe</b>
+                <p>Suggested for you</p>
+            </div>
+            <div class="follow">Follow</div>
+        </div>
+
+        <div class="suggestion">
+            <img src="https://i.pravatar.cc/100?img=31">
+            <div class="suggestion-info">
+                <b>emma_watson</b>
+                <p>Followed by alex</p>
+            </div>
+            <div class="follow">Follow</div>
+        </div>
+
+        <div class="suggestion">
+            <img src="https://i.pravatar.cc/100?img=32">
+            <div class="suggestion-info">
+                <b>creative_world</b>
+                <p>Suggested for you</p>
+            </div>
+            <div class="follow">Follow</div>
+        </div>
+
+        <div class="suggestion">
+            <img src="https://i.pravatar.cc/100?img=33">
+            <div class="suggestion-info">
+                <b>design_daily</b>
+                <p>New to Instagram</p>
+            </div>
+            <div class="follow">Follow</div>
+        </div>
+
+        <div class="footer">
+            About · Help · Press · API · Jobs · Privacy
+            <br>
+            Terms · Locations · Language
+            <br><br>
+            © 2026 INSTAGRAM CLONE
+        </div>
+
+    </aside>
+
+</div>
+
+</body>
+</html>
+

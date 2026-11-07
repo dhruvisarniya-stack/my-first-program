@@ -1,0 +1,322 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fafafa;
+    color: #262626;
+}
+
+/* Main Layout */
+.container {
+    display: grid;
+    grid-template-columns: 245px 1fr 320px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 30px 20px;
+    border-right: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-family: cursive;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.nav-item:hover {
+    background: #eee;
+}
+
+.nav-item span {
+    font-size: 23px;
+}
+
+/* Main Feed */
+.feed {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 30px 25px;
+}
+
+/* Stories */
+.stories {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 15px 5px 25px;
+    margin-bottom: 20px;
+}
+
+.story {
+    min-width: 68px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.story img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 3px;
+    border: 3px solid #e1306c;
+    margin-bottom: 7px;
+}
+
+/* Post Card */
+.post {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    gap: 10px;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.location {
+    color: #888;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.more {
+    margin-left: auto;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.post-image {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Post Actions */
+.post-actions {
+    display: flex;
+    gap: 17px;
+    padding: 13px 14px;
+    font-size: 25px;
+}
+
+.post-actions span {
+    cursor: pointer;
+}
+
+.post-actions .save {
+    margin-left: auto;
+}
+
+/* Post Content */
+.post-content {
+    padding: 0 14px 16px;
+    font-size: 14px;
+}
+
+.likes {
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.caption {
+    margin-bottom: 8px;
+}
+
+.comments {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.add-comment {
+    color: #999;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+/* Right Suggestions */
+.right-panel {
+    padding: 40px 25px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+    font-size: 14px;
+}
+
+.profile-info p {
+    color: #999;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.switch {
+    color: #0095f6;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Suggestions */
+.suggestion-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.suggestion-heading span {
+    color: #999;
+}
+
+.suggestion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.suggestion img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.suggestion-info {
+    flex: 1;
+    font-size: 13px;
+}
+
+.suggestion-info p {
+    color: #999;
+    margin-top: 4px;
+    font-size: 11px;
+}
+
+.follow {
+    color: #0095f6;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    color: #bbb;
+    font-size: 11px;
+    line-height: 2;
+    margin-top: 35px;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1050px) {
+    .container {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .sidebar {
+        padding: 25px 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        justify-content: center;
+    }
+
+    .nav-item strong {
+        display: none;
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .container {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .feed {
+        padding: 10px 0;
+    }
+
+    .stories {
+        padding-left: 12px;
+    }
+
+    .post {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .post-image {
+        height: 380px;
+    }
+}
